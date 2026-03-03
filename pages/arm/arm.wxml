@@ -1,0 +1,69 @@
+<!-- pages/arm/arm.wxml Created by Yue -->
+<!-- www.5i03.cn -->
+<!-- 你说机械做的心会梦见电子蝴蝶吗？ -->
+<view class="container">
+  <!-- 视频流显示区域 -->
+  <view class="video-section">
+    <image class="video-player" src="{{videoUrl}}" mode="aspectFit" />
+    <text wx:if="{{!videoUrl}}" class="video-placeholder">视频流将在此显示</text>
+  </view>
+
+  <!-- 控制面板 -->
+  <view class="control-section">
+    <view class="control-section-content">
+      <!-- MAC地址输入 -->
+      <view class="control-group">
+        <text class="label">设备MAC地址</text>
+        <input class="device-input" placeholder="请输入设备MAC地址" bindinput="setMacAddress" value="{{macAddress}}" />
+      </view>
+
+      <!-- 局域网IP视频流输入 -->
+      <view class="control-group">
+        <text class="label">视频流地址</text>
+        <input class="device-input" placeholder="例如: 192.168.1.100" bindinput="setLocalIP" value="{{localIP}}" />
+      </view>
+
+      <!-- 订阅按钮 -->
+      <view class="button-group">
+        <button class="btn btn-primary" bindtap="subscribeUpTopic" disabled="{{!connected || !macAddress}}">订阅设备反馈</button>
+        <button class="btn btn-secondary" bindtap="goHome" disabled="{{!connected || !macAddress}}">复位(90°)</button>
+      </view>
+
+      <!-- 上报监听展示框 -->
+      <!-- <view class="control-group report-box">
+        <text class="label">上报监听</text>
+        <scroll-view class="report-list" scroll-y="true" style="height:240rpx;">
+            <block wx:for="{{reports}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+              <view class="report-item">{{idx + 1}}. {{item}}</view>
+            </block>
+        </scroll-view>
+      </view> -->
+
+      <!-- 舵机控制滑块 -->
+      <view class="control-group">
+        <text class="label">舵机0角度: {{servo0}}°</text>
+        <slider class="slider" min="0" max="180" value="{{servo0}}" step="1" bindchange="onServo0Change" show-value disabled="{{!connected || !macAddress}}" />
+      </view>
+
+      <view class="control-group">
+        <text class="label">舵机1角度: {{servo1}}°</text>
+        <slider class="slider" min="0" max="180" value="{{servo1}}" step="1" bindchange="onServo1Change" show-value disabled="{{!connected || !macAddress}}" />
+      </view>
+
+      <view class="control-group">
+        <text class="label">舵机2角度: {{servo2}}°</text>
+        <slider class="slider" min="0" max="180" value="{{servo2}}" step="1" bindchange="onServo2Change" show-value disabled="{{!connected || !macAddress}}" />
+      </view>
+
+      <!-- 复位按钮 -->
+      <view class="button-group">
+        <!-- <button class="btn btn-secondary" bindtap="goHome" disabled="{{!connected || !macAddress}}">复位(90°)</button> -->
+      </view>
+    </view>
+
+    <!-- 状态栏 -->
+    <view class="status-bar">
+      <text class="status-text">{{statusText}}</text>
+    </view>
+  </view>
+</view>
