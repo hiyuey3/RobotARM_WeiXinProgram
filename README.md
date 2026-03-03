@@ -15,8 +15,8 @@
 
 - **连接地址**: `ws://mqtt.5i03.cn:8083/mqtt`
 - **ClientID 格式**: `wx_client_xxxx`（自动随机生成）
-- **下行主题**: `/iot/device/{MAC地址}/down`
-- **上行主题**: `/iot/device/{MAC地址}/up`
+- **下行主题**: `/iot/device/{ESP32_MAC地址}/down`
+- **上行主题**: `/iot/device/{ESP32_MAC地址}/up`
 
 ### 控制指令格式
 
